@@ -6,7 +6,7 @@ import com.tao.ai.rl.tabular.core.TabularModel;
 import com.tao.ai.rl.tabular.core.TabularModel2;
 import com.tao.ai.rl.tabular.utilities.ArrayUtilities;
 
-public class TabularModelForAnylogic extends TabularModel {
+public class TabularModelForAnylogic2 extends TabularModel2 {
 	
 	/**
 	 * 
@@ -14,7 +14,7 @@ public class TabularModelForAnylogic extends TabularModel {
 	private static final long serialVersionUID = 144161225823821016L;
 	private List<DecisionRule> actions;
 
-	public TabularModelForAnylogic(List<Double[]>stateFeatureSpace,List<DecisionRule> actions) {	
+	public TabularModelForAnylogic2(List<Double[]>stateFeatureSpace,List<DecisionRule> actions) {	
 		
 		super(ArrayUtilities.converTo2DX(stateFeatureSpace), ArrayUtilities.converTo2DY(actions));
 		this.setActions(actions);

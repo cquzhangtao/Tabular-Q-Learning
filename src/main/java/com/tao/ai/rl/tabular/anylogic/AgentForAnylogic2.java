@@ -7,14 +7,14 @@ import com.tao.ai.rl.tabular.core.Agent;
 import com.tao.ai.rl.tabular.core.Agent2;
 import com.tao.ai.rl.tabular.utilities.ArrayUtilities;
 
-public class AgentForAnylogic extends Agent {
+public class AgentForAnylogic2 extends Agent2 {
 
-	public AgentForAnylogic(TabularModelForAnylogic model) {
+	public AgentForAnylogic2(TabularModelForAnylogic2 model) {
 		super(model);
 
 	}
 	
-	public AgentForAnylogic(String model) {
+	public AgentForAnylogic2(String model) {
 		super(model);
 	}
 	
@@ -23,7 +23,7 @@ public class AgentForAnylogic extends Agent {
 	}
 	
 	public DecisionRule selectAction(Double[] stateFeatures, double reward) {
-		return selectAction(stateFeatures,((TabularModelForAnylogic)getModel()).getActions(),reward);
+		return selectAction(stateFeatures,((TabularModelForAnylogic2)getModel()).getActions(),reward);
 	}
 	
 	public DecisionRule selectAction(Double[] stateFeatures, List<DecisionRule> rules, double reward) {

@@ -100,6 +100,18 @@ class QValueMapTest {
 		act.setFeatures(features1);
 		
 		map.put(state, act, 888.88);
+		
+		state = new State();		
+		features = new ArrayList<>();
+		features.add(156.0);
+		features.add(889.0);
+		state.setFeatures(features);
+		
+		act = new Action();		
+		features1 = new ArrayList<>();
+		features1.add(DecisionRule.Customer1);
+		features1.add(369.0);
+		act.setFeatures(features1);
 		assertEquals(map.get(state, act),888.88);
 	}
 
