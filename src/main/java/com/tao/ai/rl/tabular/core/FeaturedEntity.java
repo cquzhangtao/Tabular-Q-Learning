@@ -35,11 +35,17 @@ public class FeaturedEntity implements Serializable{
 			FeaturedEntity entity=(FeaturedEntity) obj;
 			int idx=0;
 			for(Object feature:features) {
-				if(feature instanceof Number) {
+				if(feature instanceof Double) {
 					if(Math.abs((Double)feature-(Double)entity.getFeatures().get(idx))>0.0000001) {
 						return false;
 					}
-				}else {
+				}else if(feature instanceof Integer) {
+					if(Math.abs((Integer)feature-(Integer)entity.getFeatures().get(idx))>0.0000001) {
+						return false;
+					}
+				}
+				
+				else {
 					if(feature!=entity.getFeatures().get(idx)) {
 						return false;
 					}

@@ -103,7 +103,13 @@ public class TabularModelUtilities {
 			Object closestItem=null;
 			double minDiffer=Double.MAX_VALUE;
 			for(Object obj:levelList) {
-				double diff=Math.abs((Double)item-(Double)obj);
+				double diff=0;
+				if(item instanceof Double) {
+					diff=Math.abs((Double)item-(Double)obj);
+				} else if(item instanceof Integer) {
+					diff=Math.abs((Integer)item-(Integer)obj);
+				}
+				 
 				if(diff<minDiffer) {
 					minDiffer=diff;
 					closestItem= obj;
