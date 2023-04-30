@@ -19,8 +19,8 @@ public class Agent {
 	
 	private TabularModel model;
 	private double learningRate = 0.1;
-	private double discountFactor = 0.5;
-	private static double greedy = 0.2;
+	private double discountFactor = 0.9;
+	private  double greedy = 0.2;
 	
 	
 	private State preState;
@@ -224,14 +224,14 @@ public class Agent {
 
 
 
-	public static double getGreedy() {
+	public  double getGreedy() {
 		return greedy;
 	}
 
 
 
-	public static void setGreedy(double greedy) {
-		Agent.greedy = greedy;
+	public  void setGreedy(double greedy) {
+		this.greedy = greedy;
 	}
 
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.tao.ai.rl.tabular.core.Agent;
+import com.tao.ai.rl.tabular.utilities.ArrayUtilities;
 
 public class AgentForAnylogic extends Agent {
 
@@ -25,21 +26,11 @@ public class AgentForAnylogic extends Agent {
 	}
 	
 	public DecisionRule selectAction(Double[] stateFeatures, List<DecisionRule> rules, double reward) {
-		int idx= super.selectAction(stateFeatures,converItemTo2D( rules), reward);
+		int idx= super.selectAction(stateFeatures,ArrayUtilities.converItemTo2D( rules), reward);
 		return rules.get(idx);
 	}
 	
-	private static List<Object[]> converItemTo2D(List<DecisionRule> rules){
-		List<Object[]> results=new ArrayList<>();
-		
-		for(DecisionRule rule:rules) {
-			Object[] ruleA=new Object[1];
-			ruleA[0]=rule;
-			results.add(ruleA);
-		}
-
-		return results;
-	}
+	
 	
 	
 
