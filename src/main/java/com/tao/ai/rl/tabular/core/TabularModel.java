@@ -23,7 +23,7 @@ public class TabularModel implements Serializable{
 		this.stateSpace=stateSpace;
 		this.actionSet=actionSet;
 		TabularModelUtilities.generateQTable(this);
-		System.out.println("State space:"+stateSpace.size()+",sctiob set:"+actionSet.size()+stateSpace.size()+",Q table len:"+qTable.size());
+		System.out.println("State space:"+stateSpace.size()+",action set:"+actionSet.size()+",Q table len:"+qTable.size());
 		
 	}
 	
