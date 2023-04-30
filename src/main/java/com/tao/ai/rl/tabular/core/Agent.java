@@ -175,7 +175,7 @@ public class Agent {
 		}
 		
 		double futureEstimate=reward+discountFactor*maxValue;
-		double newValue=oldValue+learningRate*futureEstimate;
+		double newValue=oldValue+learningRate*(futureEstimate-oldValue);
 		
 		model.updateQValue(state, action, newValue);
 		
