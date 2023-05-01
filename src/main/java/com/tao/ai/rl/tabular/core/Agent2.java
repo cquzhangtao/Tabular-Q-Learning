@@ -16,6 +16,8 @@ import java.util.Random;
 import com.tao.ai.rl.tabular.utilities.StateActionUtilities;
 import com.tao.ai.rl.tabular.utilities.TabularModelUtilities;
 
+import ch.qos.logback.classic.Logger;
+
 public class Agent2 {
 	
 	private TabularModel2 model;
@@ -26,7 +28,7 @@ public class Agent2 {
 	
 	private int preState=-1;
 	private int preAction=-1;
-	
+	private double preEpisodReward=Double.NEGATIVE_INFINITY;
 	private double totalReward=0;
 	private List<Double>totalRewardPerEpisod=new ArrayList<>();
 
@@ -178,12 +180,22 @@ public class Agent2 {
 		double futureEstimate=reward+discountFactor*maxValue;
 		double newValue=oldValue+learningRate*(futureEstimate-oldValue);
 		
+		//System.out.println("update q :"+oldValue+","+newValue);
+		
+		
 		model.updateQValue(state, action, newValue);
 		
 	}
 	
 	public void onSimEnd() {
 		totalRewardPerEpisod.add(totalReward);
+		/*if(preEpisodReward>totalReward) {
+			model.rollBack();
+		}else {
+			preEpisodReward=totalReward;
+			model.moveon();
+		}*/
+		model.moveon();
 		totalReward=0;
 	}
 

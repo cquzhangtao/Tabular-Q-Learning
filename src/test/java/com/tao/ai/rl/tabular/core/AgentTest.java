@@ -104,8 +104,8 @@ class AgentTest {
 		DecisionRule rule1 = rlAgent.selectAction(nextState,32.0);
 		
 		double oldValue = 567;
-		double targetValue = 32.0+ 112*rlAgent.getDiscountFactor();
-		double newValue= oldValue+rlAgent.getLearningRate()*(targetValue-oldValue );
+		double targetValue = 32.0+ 112*0.9;
+		double newValue= oldValue+0.1*(targetValue-oldValue );
 		
 		
 		state=TabularModelUtilities.convertToState(rlModel, curstate);

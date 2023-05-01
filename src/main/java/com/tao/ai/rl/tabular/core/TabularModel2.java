@@ -1,7 +1,12 @@
 package com.tao.ai.rl.tabular.core;
 
+import java.io.Serializable;
 
-public class TabularModel2 {
+public class TabularModel2 implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4460622595722832138L;
 	private Object[][] stateFeatureSpace;
 	private Object[][] actionFeatureSpace;
 	
@@ -11,16 +16,19 @@ public class TabularModel2 {
 	private int[] actionFeatureLevelNum;
 
 	private QTable qTable;
+	private QTable targetQTable;
 	private int stateNum = 1;
 	private int actionNum = 1;
 	private int[] stateCumm;
 
-
+	private QTable preQTable;
 
 
 	private int[] actionCumm;
 	
 	public TabularModel2(Object[][] stateFeatureSpace, Object[][] actionFeatureSpace) {
+		stateFeatureLevelNum=new int[stateFeatureSpace.length];
+		actionFeatureLevelNum=new int[actionFeatureSpace.length];
 		int idx=0;
 		for (Object[] levels : stateFeatureSpace) {
 			stateNum = stateNum * levels.length;
@@ -47,6 +55,7 @@ public class TabularModel2 {
 		}
 		
 		qTable = new QTable(stateNum, actionNum);
+		targetQTable= new QTable(qTable,stateNum, actionNum);
 		this.stateFeatureSpace = stateFeatureSpace;
 		this.actionFeatureSpace = actionFeatureSpace;
 		System.out.println(
@@ -65,7 +74,7 @@ public class TabularModel2 {
 	}
 
 	public void updateQValue(int state, int action, double newValue) {
-		qTable.setQValue(state, action, newValue);
+		targetQTable.setQValue(state, action, newValue);
 	}
 
 	public Object[][] getStateFeatureSpace() {
@@ -93,5 +102,21 @@ public class TabularModel2 {
 
 	public int[] getActionCumm() {
 		return actionCumm;
+	}
+
+
+
+	public void rollBack() {
+		targetQTable=new QTable(qTable,stateNum,actionNum);
+		
+	}
+
+
+
+	public void moveon() {
+
+		qTable=new QTable(targetQTable,stateNum,actionNum);
+
+		
 	}
 }
