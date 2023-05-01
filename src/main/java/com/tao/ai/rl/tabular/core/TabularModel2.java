@@ -74,7 +74,7 @@ public class TabularModel2 implements Serializable{
 	}
 
 	public void updateQValue(int state, int action, double newValue) {
-		targetQTable.setQValue(state, action, newValue);
+		qTable.setQValue(state, action, newValue);
 	}
 
 	public Object[][] getStateFeatureSpace() {
@@ -107,16 +107,17 @@ public class TabularModel2 implements Serializable{
 
 
 	public void rollBack() {
-		targetQTable=new QTable(qTable,stateNum,actionNum);
-		
+		//targetQTable=new QTable(qTable,stateNum,actionNum);
+		qTable=new QTable(preQTable,stateNum,actionNum);
 	}
 
 
 
 	public void moveon() {
 
+		preQTable=new QTable(qTable,stateNum,actionNum);
 		qTable=new QTable(targetQTable,stateNum,actionNum);
-
+	
 		
 	}
 }

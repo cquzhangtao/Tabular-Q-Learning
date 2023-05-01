@@ -31,8 +31,13 @@ public class Agent2 {
 	private double preEpisodReward=Double.NEGATIVE_INFINITY;
 	private double totalReward=0;
 	private List<Double>totalRewardPerEpisod=new ArrayList<>();
+	
+	private int epoch=0;
+	private int maxEpoch=100;
 
 	
+
+
 	private Random rnd=new Random(0);
 	
 	private boolean training=true;
@@ -117,7 +122,7 @@ public class Agent2 {
 	
 	public int selectAction(int state, List<Integer> actions, double reward) {
 		int bestAction=-1;
-		if(rnd.nextDouble()<greedy&&training) {
+		if(rnd.nextDouble()<getDecaiedValueGreedy(maxEpoch,greedy)&&training) {
 			int size = actions.size();
 			int item = rnd.nextInt(size); 			
 			bestAction= actions.get(item);
@@ -178,7 +183,7 @@ public class Agent2 {
 		}
 		
 		double futureEstimate=reward+discountFactor*maxValue;
-		double newValue=oldValue+learningRate*(futureEstimate-oldValue);
+		double newValue=oldValue+getDecaiedValue(maxEpoch,learningRate)*(futureEstimate-oldValue);
 		
 		//System.out.println("update q :"+oldValue+","+newValue);
 		
@@ -195,8 +200,9 @@ public class Agent2 {
 			preEpisodReward=totalReward;
 			model.moveon();
 		}*/
-		model.moveon();
+		//model.moveon();
 		totalReward=0;
+		epoch++;
 	}
 
 
@@ -251,6 +257,43 @@ public class Agent2 {
 
 	public double getTotalReward() {
 		return totalReward;
+	}
+	
+	private double getDecaiedValue8(int step2zero,double initial) {
+		return Math.max(0.001, 1.0*(step2zero-epoch)/step2zero*initial);
+	}
+	
+	private double getDecaiedValueGreed8(int step2zero,double initial) {
+		return Math.max(0.00001, 1.0*(step2zero-epoch)/step2zero*initial);
+	}
+	
+	private int epoch0d01=-1;
+	
+	private double getDecaiedValue(int step2zero,double initial) {
+		double value=  initial/(1+0.025*epoch);
+		//if(value>0.0005) {
+			if(epoch0d01>-1) {
+				epoch0d01=epoch;
+			}
+			return value;
+		
+		//}
+		//return Math.max(0, 1.0*(500-epoch+epoch0d01)/500*0.01);
+	}
+	private double getDecaiedValueGreedy(int step2zero,double initial) {
+		double value=  initial/(1+0.05*epoch);
+		//if(value>0.0005) {
+			if(epoch0d01>-1) {
+				epoch0d01=epoch;
+			}
+			return value;
+		
+		//}
+		//return Math.max(0, 1.0*(500-epoch+epoch0d01)/500*0.01);
+	}
+	
+	public void setMaxEpoch(int maxEpoch) {
+		this.maxEpoch = maxEpoch;
 	}
 
 }
