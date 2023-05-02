@@ -36,14 +36,12 @@ public class Agent2 {
 	private List<Double>totalRewardPerEpisod=new ArrayList<>();
 	
 	private int epoch=0;
-	private int maxEpochLearningRate=100;
-	public void setMaxEpochLearningRate(int maxEpochLearningRate) {
-		this.maxEpochLearningRate = maxEpochLearningRate;
+	public int getEpoch() {
+		return epoch;
 	}
 
-	public void setMaxEpochEpsilon(int maxEpochEpsilon) {
-		this.maxEpochEpsilon = maxEpochEpsilon;
-	}
+	private int maxEpochLearningRate=100;
+
 
 	private int maxEpochEpsilon=100;
 	
@@ -123,6 +121,7 @@ public class Agent2 {
 		int selAction= selectAction(state,actions,reward);
 		if(!action2IdxMap.containsKey(selAction)) {
 			System.out.println("error in Agent,"+selAction +","+action2IdxMap) ;
+			System.exit(0);
 		}
 		return action2IdxMap.get(selAction);
 		
@@ -155,6 +154,7 @@ public class Agent2 {
 		}
 		if(bestAction==-1) {
 			System.out.println("error in Agent 1,");
+			System.exit(0);
 		}
 		
 		if(training) {
@@ -284,6 +284,9 @@ public class Agent2 {
 		//double value=  learningRate/(1+0.025*epoch);
 		
 		double value=learningRate*Math.pow(learningRateDecay, 1.0*epoch/maxEpochLearningRate);
+		if(value<minLearningRate) {
+			value=0;
+		}
 		
 			return value;
 //		
@@ -325,5 +328,11 @@ public class Agent2 {
 	public void setMinLearningRate(double minLearningRate) {
 		this.minLearningRate = minLearningRate;
 	}
+	public void setMaxEpochLearningRate(int maxEpochLearningRate) {
+		this.maxEpochLearningRate = maxEpochLearningRate;
+	}
 
+	public void setMaxEpochEpsilon(int maxEpochEpsilon) {
+		this.maxEpochEpsilon = maxEpochEpsilon;
+	}
 }
