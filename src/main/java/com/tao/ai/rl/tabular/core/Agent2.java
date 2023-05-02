@@ -22,6 +22,7 @@ public class Agent2 {
 	
 	private TabularModel2 model;
 	private double learningRate = 0.1;
+	private double minLearningRate = 0.001;
 	private double learningRateDecay = 0.1;
 	private double discountFactor = 0.9;
 	private  double epsilon = 0.2;
@@ -275,10 +276,10 @@ public class Agent2 {
 		//double value=  learningRate/(1+0.025*epoch);
 		
 		double value=learningRate*Math.pow(learningRateDecay, epoch/maxEpoch);
-		//if(value>0.0005) {
-//			if(epoch0d01>-1) {
-//				epoch0d01=epoch;
-//			}
+		if(value<minLearningRate) {
+			epsilon=0;
+			System.out.println("epsilon is 0 now");
+		}
 			return value;
 //		
 		//}
@@ -311,6 +312,10 @@ public class Agent2 {
 
 	public void setEpsilonDecay(double epsilonDecay) {
 		this.epsilonDecay = epsilonDecay;
+	}
+
+	public void setMinLearningRate(double minLearningRate) {
+		this.minLearningRate = minLearningRate;
 	}
 
 }
