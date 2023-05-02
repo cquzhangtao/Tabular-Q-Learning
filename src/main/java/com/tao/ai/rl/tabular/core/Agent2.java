@@ -290,7 +290,7 @@ public class Agent2 {
 		//}
 		//return Math.max(0, 1.0*(500-epoch+epoch0d01)/500*0.01);
 	}
-	private double getDecayedEpsilon() {
+	public double getDecayedEpsilon() {
 		
 		if(getDecayedLearningRate()<minLearningRate&&epsilon>0) {
 			epsilon=-1;
