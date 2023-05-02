@@ -22,8 +22,10 @@ public class Agent2 {
 	
 	private TabularModel2 model;
 	private double learningRate = 0.1;
+	private double learningRateDecay = 0.1;
 	private double discountFactor = 0.9;
-	private  double greedy = 0.2;
+	private  double epsilon = 0.2;
+	private  double epsilonDecay = 0.2;
 	
 	
 	private int preState=-1;
@@ -122,7 +124,7 @@ public class Agent2 {
 	
 	public int selectAction(int state, List<Integer> actions, double reward) {
 		int bestAction=-1;
-		if(rnd.nextDouble()<getDecaiedValueGreedy(maxEpoch,greedy)&&training) {
+		if(rnd.nextDouble()<getDecaiedEpsilon()&&training) {
 			int size = actions.size();
 			int item = rnd.nextInt(size); 			
 			bestAction= actions.get(item);
@@ -183,7 +185,7 @@ public class Agent2 {
 		}
 		
 		double futureEstimate=reward+discountFactor*maxValue;
-		double newValue=oldValue+getDecaiedValue(maxEpoch,learningRate)*(futureEstimate-oldValue);
+		double newValue=oldValue+getDecaiedLearningRate()*(futureEstimate-oldValue);
 		
 		//System.out.println("update q :"+oldValue+","+newValue);
 		
@@ -244,13 +246,13 @@ public class Agent2 {
 
 
 	public  double getGreedy() {
-		return greedy;
+		return epsilon;
 	}
 
 
 
 	public  void setGreedy(double greedy) {
-		this.greedy = greedy;
+		this.epsilon = greedy;
 	}
 
 
@@ -269,10 +271,10 @@ public class Agent2 {
 	
 	private int epoch0d01=-1;
 	
-	private double getDecaiedValue(int step2zero,double initial) {
-		double value=  initial/(1+0.025*epoch);
+	private double getDecaiedLearningRate() {
+		//double value=  learningRate/(1+0.025*epoch);
 		
-		value=initial*Math.pow(0.3, epoch/step2zero);
+		double value=learningRate*Math.pow(learningRateDecay, epoch/maxEpoch);
 		//if(value>0.0005) {
 //			if(epoch0d01>-1) {
 //				epoch0d01=epoch;
@@ -282,9 +284,8 @@ public class Agent2 {
 		//}
 		//return Math.max(0, 1.0*(500-epoch+epoch0d01)/500*0.01);
 	}
-	private double getDecaiedValueGreedy(int step2zero,double initial) {
-		double value=  initial/(1+0.05*epoch);
-		value=initial;
+	private double getDecaiedEpsilon() {
+		double value=epsilon*Math.pow(epsilonDecay, epoch/maxEpoch);
 //		
 //		//if(value>0.0005) {
 //			if(epoch0d01>-1) {
@@ -298,6 +299,18 @@ public class Agent2 {
 	
 	public void setMaxEpoch(int maxEpoch) {
 		this.maxEpoch = maxEpoch;
+	}
+
+	public void setLearningRateDecay(double learningRateDecay) {
+		this.learningRateDecay = learningRateDecay;
+	}
+
+	public double getEpsilonDecay() {
+		return epsilonDecay;
+	}
+
+	public void setEpsilonDecay(double epsilonDecay) {
+		this.epsilonDecay = epsilonDecay;
 	}
 
 }
