@@ -64,5 +64,9 @@ public class QTable implements Serializable{
 	public double[][] getVisits() {
 		return visits;
 	}
+	
+	public double[][] getQValues() {
+		return qvalues;
+	}
 
 }

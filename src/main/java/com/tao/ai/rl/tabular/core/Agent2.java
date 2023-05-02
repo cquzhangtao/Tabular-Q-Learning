@@ -36,8 +36,16 @@ public class Agent2 {
 	private List<Double>totalRewardPerEpisod=new ArrayList<>();
 	
 	private int epoch=0;
-	private int maxEpoch=100;
+	private int maxEpochLearningRate=100;
+	public void setMaxEpochLearningRate(int maxEpochLearningRate) {
+		this.maxEpochLearningRate = maxEpochLearningRate;
+	}
 
+	public void setMaxEpochEpsilon(int maxEpochEpsilon) {
+		this.maxEpochEpsilon = maxEpochEpsilon;
+	}
+
+	private int maxEpochEpsilon=100;
 	
 
 
@@ -272,21 +280,23 @@ public class Agent2 {
 	
 	private int epoch0d01=-1;
 	
-	private double getDecayedLearningRate() {
+	public double getDecayedLearningRate() {
 		//double value=  learningRate/(1+0.025*epoch);
 		
-		double value=learningRate*Math.pow(learningRateDecay, epoch/maxEpoch);
-		if(value<minLearningRate&&epsilon>0) {
-			epsilon=-1;
-			System.out.println("epsilon is 0 now");
-		}
+		double value=learningRate*Math.pow(learningRateDecay, 1.0*epoch/maxEpochLearningRate);
+		
 			return value;
 //		
 		//}
 		//return Math.max(0, 1.0*(500-epoch+epoch0d01)/500*0.01);
 	}
 	private double getDecayedEpsilon() {
-		double value=epsilon*Math.pow(epsilonDecay, epoch/maxEpoch);
+		
+		if(getDecayedLearningRate()<minLearningRate&&epsilon>0) {
+			epsilon=-1;
+			System.out.println("epsilon is 0 now");
+		}
+		double value=epsilon*Math.pow(epsilonDecay, 1.0*epoch/maxEpochEpsilon);
 //		
 //		//if(value>0.0005) {
 //			if(epoch0d01>-1) {
@@ -298,9 +308,7 @@ public class Agent2 {
 		//return Math.max(0, 1.0*(500-epoch+epoch0d01)/500*0.01);
 	}
 	
-	public void setMaxEpoch(int maxEpoch) {
-		this.maxEpoch = maxEpoch;
-	}
+
 
 	public void setLearningRateDecay(double learningRateDecay) {
 		this.learningRateDecay = learningRateDecay;
