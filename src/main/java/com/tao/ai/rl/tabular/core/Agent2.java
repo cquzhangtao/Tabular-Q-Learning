@@ -271,24 +271,28 @@ public class Agent2 {
 	
 	private double getDecaiedValue(int step2zero,double initial) {
 		double value=  initial/(1+0.025*epoch);
-		//if(value>0.0005) {
-			if(epoch0d01>-1) {
-				epoch0d01=epoch;
-			}
-			return value;
 		
+		value=initial*Math.pow(0.3, epoch/step2zero);
+		//if(value>0.0005) {
+//			if(epoch0d01>-1) {
+//				epoch0d01=epoch;
+//			}
+			return value;
+//		
 		//}
 		//return Math.max(0, 1.0*(500-epoch+epoch0d01)/500*0.01);
 	}
 	private double getDecaiedValueGreedy(int step2zero,double initial) {
 		double value=  initial/(1+0.05*epoch);
-		//if(value>0.0005) {
-			if(epoch0d01>-1) {
-				epoch0d01=epoch;
-			}
+		value=initial;
+//		
+//		//if(value>0.0005) {
+//			if(epoch0d01>-1) {
+//				epoch0d01=epoch;
+//			}
 			return value;
-		
-		//}
+//		
+//		//}
 		//return Math.max(0, 1.0*(500-epoch+epoch0d01)/500*0.01);
 	}
 	
