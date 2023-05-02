@@ -1,4 +1,5 @@
 com\tao\ai\rl\tabular\core\QValueMap.class
+com\tao\ai\rl\tabular\anylogic\TabularModelForAnylogic2.class
 com\tao\ai\rl\tabular\old\ReinforcementLearningTest$3.class
 com\tao\ai\rl\tabular\utilities\TabularModelUtilities.class
 com\tao\ai\rl\tabular\old\QValueMapTest.class
@@ -14,15 +15,20 @@ com\tao\ai\rl\tabular\core\State.class
 com\tao\ai\rl\tabular\old\State.class
 com\tao\ai\rl\tabular\old\ReinforcementLearningTest.class
 com\tao\ai\rl\tabular\old\ReinforcementLearningTest$2.class
+com\tao\ai\rl\tabular\anylogic\AgentForAnylogic2.class
 com\tao\ai\rl\tabular\utilities\ArrayUtilities.class
 com\tao\ai\rl\tabular\core\Agent.class
+com\tao\ai\rl\tabular\core\Agent2.class
 com\tao\ai\rl\tabular\core\TabularModel.class
 com\tao\ai\rl\tabular\old\ReinforcementLearningTest$4.class
 com\tao\ai\rl\tabular\anylogic\TabularModelForAnylogic.class
+com\tao\ai\rl\tabular\core\TabularModel2.class
 com\tao\ai\rl\tabular\old\StateActionPair.class
 com\tao\ai\rl\tabular\old\StateActionPairSet.class
 com\tao\ai\rl\tabular\old\ReinforcementLearningTest$6.class
+com\tao\ai\rl\tabular\core\QTable.class
 com\tao\ai\rl\tabular\old\ReinforcementLearningTest$1.class
 com\tao\ai\rl\tabular\core\StateActionPair.class
 com\tao\ai\rl\tabular\old\ConvergenceChart$1.class
 com\tao\ai\rl\tabular\old\ReinforcementLearningTest$Algorithm.class
+com\tao\ai\rl\tabular\utilities\StateActionUtilities.class

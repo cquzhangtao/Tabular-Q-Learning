@@ -1,6 +1,7 @@
 com\tao\ai\rl\tabular\utilities\ArrayUtilitiesTest.class
 com\tao\ai\rl\tabular\utilities\TabularModelUtilitiesTest2.class
 com\tao\ai\rl\tabular\core\AgentTest.class
+com\tao\ai\rl\tabular\utilities\StateActionUtilitiesTest.class
 com\tao\ai\rl\tabular\anylogic\AgentForAnylogicTest.class
 com\tao\ai\rl\tabular\core\QValueMapTest.class
 com\tao\ai\rl\tabular\utilities\TabularModelUtilitiesTest.class

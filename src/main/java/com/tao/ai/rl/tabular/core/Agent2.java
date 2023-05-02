@@ -245,13 +245,13 @@ public class Agent2 {
 
 
 
-	public  double getGreedy() {
+	public  double getEpsilon() {
 		return epsilon;
 	}
 
 
 
-	public  void setGreedy(double greedy) {
+	public  void setEpsilon(double greedy) {
 		this.epsilon = greedy;
 	}
 
