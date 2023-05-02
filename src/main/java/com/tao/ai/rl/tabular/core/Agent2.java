@@ -124,7 +124,7 @@ public class Agent2 {
 	
 	public int selectAction(int state, List<Integer> actions, double reward) {
 		int bestAction=-1;
-		if(rnd.nextDouble()<getDecaiedEpsilon()&&training) {
+		if(rnd.nextDouble()<getDecayedEpsilon()&&training) {
 			int size = actions.size();
 			int item = rnd.nextInt(size); 			
 			bestAction= actions.get(item);
@@ -185,7 +185,7 @@ public class Agent2 {
 		}
 		
 		double futureEstimate=reward+discountFactor*maxValue;
-		double newValue=oldValue+getDecaiedLearningRate()*(futureEstimate-oldValue);
+		double newValue=oldValue+getDecayedLearningRate()*(futureEstimate-oldValue);
 		
 		//System.out.println("update q :"+oldValue+","+newValue);
 		
@@ -271,7 +271,7 @@ public class Agent2 {
 	
 	private int epoch0d01=-1;
 	
-	private double getDecaiedLearningRate() {
+	private double getDecayedLearningRate() {
 		//double value=  learningRate/(1+0.025*epoch);
 		
 		double value=learningRate*Math.pow(learningRateDecay, epoch/maxEpoch);
@@ -284,7 +284,7 @@ public class Agent2 {
 		//}
 		//return Math.max(0, 1.0*(500-epoch+epoch0d01)/500*0.01);
 	}
-	private double getDecaiedEpsilon() {
+	private double getDecayedEpsilon() {
 		double value=epsilon*Math.pow(epsilonDecay, epoch/maxEpoch);
 //		
 //		//if(value>0.0005) {
