@@ -276,8 +276,8 @@ public class Agent2 {
 		//double value=  learningRate/(1+0.025*epoch);
 		
 		double value=learningRate*Math.pow(learningRateDecay, epoch/maxEpoch);
-		if(value<minLearningRate) {
-			epsilon=0;
+		if(value<minLearningRate&&epsilon>0) {
+			epsilon=-1;
 			System.out.println("epsilon is 0 now");
 		}
 			return value;
