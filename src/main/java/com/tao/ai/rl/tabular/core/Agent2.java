@@ -284,9 +284,9 @@ public class Agent2 {
 		//double value=  learningRate/(1+0.025*epoch);
 		
 		double value=learningRate*Math.pow(learningRateDecay, 1.0*epoch/maxEpochLearningRate);
-		if(value<minLearningRate) {
-			value=0;
-		}
+		//if(value<minLearningRate) {
+		//	value=0;
+		//}
 		
 			return value;
 //		
@@ -295,10 +295,10 @@ public class Agent2 {
 	}
 	public double getDecayedEpsilon() {
 		
-		if(getDecayedLearningRate()<minLearningRate&&epsilon>0) {
-			epsilon=-1;
-			System.out.println("epsilon is 0 now");
-		}
+		//if(getDecayedLearningRate()<minLearningRate&&epsilon>0) {
+		//	epsilon=-1;
+		//	System.out.println("epsilon is 0 now");
+		//}
 		double value=epsilon*Math.pow(epsilonDecay, 1.0*epoch/maxEpochEpsilon);
 //		
 //		//if(value>0.0005) {
